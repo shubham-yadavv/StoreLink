@@ -1,4 +1,4 @@
-# Node Express Typescript Starter
+# Dukaan clone
 
 Uses
 
