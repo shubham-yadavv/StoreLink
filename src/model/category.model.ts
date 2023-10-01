@@ -1,73 +1,33 @@
-import { Model, Table, Column, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import Category from './category.model';
-import Store from './store.model';
+import {
+  Model,
+  Table,
+  Column,
+  DataType,
+  HasMany
+} from "sequelize-typescript";
+
+import Product from "./product.model";
 
 @Table({
-    tableName: 'product',
+  tableName: "category",
 })
-class Product extends Model<Product> {
-    @Column({
-        type: DataType.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        field: 'product_id',
-    })
-    productId!: number;
+class Category extends Model<Category> {
+  @Column({
+    type: DataType.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    field: "id",
+  })
+  orderId!: number;
 
-    @ForeignKey(() => Category)
-    @Column({
-        type: DataType.INTEGER,
-        field: 'category_id',
-    })
-    categoryId!: number;
+  @Column({ 
+    type: DataType.STRING(255), 
+    allowNull: false
+ })
+  name!: string;
 
-    @BelongsTo(() => Category)
-    category!: Category;
-
-    @ForeignKey(() => Store)
-    @Column({
-        type: DataType.INTEGER,
-        field: 'store_id',
-    })
-    storeId!: number;
-
-    @BelongsTo(() => Store)
-    store!: Store;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-        field: 'product_name',
-    })
-    productName!: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-        field: 'description',
-    })
-    description!: string;
-
-    @Column({
-        type: DataType.FLOAT,
-        allowNull: false,
-        field: 'mrp',
-    })
-    MRP!: number;
-
-    @Column({
-        type: DataType.FLOAT,
-        allowNull: false,
-        field: 'sale_price',
-    })
-    salePrice!: number;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-        field: 'image',
-    })
-    image!: string;
+  @HasMany(() => Product)
+  products?: Product[];
 }
 
-export default Product;
+export default Category;

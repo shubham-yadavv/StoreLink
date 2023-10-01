@@ -1,5 +1,4 @@
 import { Model, Table, Column, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import sequelize from '../config/database';
 import Category from './category.model';
 import Store from './store.model';
 
@@ -11,7 +10,7 @@ class Product extends Model<Product> {
         type: DataType.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        field: 'product_id',
+        field: 'id',
     })
     productId!: number;
 

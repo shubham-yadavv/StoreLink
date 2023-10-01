@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
 import * as dotenv from "dotenv";
 import Store from "../model/store.model"
-import Seller from "../model/seller.model"
+import Account from "../model/account.model"
 import Customer from "../model/customer.model"
 import Category from "../model/category.model"
 import Order from "../model/order.model"
@@ -19,7 +19,7 @@ class Database{
     private POSTGRES_PASSWORD= process.env.POSTGRES_PASSWORD as unknown as string
 
     constructor(){
-        this.connectToPostgreSQL
+        this.connectToPostgreSQL();
     }
 
     private async connectToPostgreSQL(){
@@ -30,7 +30,7 @@ class Database{
             host: this.POSTGRES_HOST,
             port: this.POSTGRES_PORT,
             dialect: 'postgres',
-            models: [Store,Seller,Order, Product, Category, Customer]
+            models: [Store,Account,Order, Product, Category, Customer]
         });
 
         await this.sequelize.authenticate().then(()=>{

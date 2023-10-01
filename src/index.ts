@@ -18,9 +18,10 @@ class App{
         this.app.use(express.urlencoded({ extended: true }));
     }
 
-    protected databaseSync(): void{
+    protected databaseSync(): void {
         const db = new Database()
-        db.sequelize?.sync
+        db.sequelize?.sync();
+
     }
 
     protected routes(): void{
@@ -30,7 +31,7 @@ class App{
     }
 }
 
-const port = 3000;``
+const port = 3000;
 const app = new App().app
 
 app.listen( port, () => {

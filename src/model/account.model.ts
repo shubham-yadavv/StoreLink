@@ -3,16 +3,16 @@ import Store from './store.model';
 import Order from './order.model';
 
 @Table({
-    tableName: 'seller',
+    tableName: 'account',
 })
-class Seller extends Model<Seller> {
+class Account extends Model<Account> {
     @Column({
         type: DataType.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        field: 'seller_id',
+        field: 'id',
     })
-    sellerId!: number;
+    id!: number;
 
     @Column({
         type: DataType.STRING,
@@ -31,8 +31,6 @@ class Seller extends Model<Seller> {
     @HasMany(() => Store)
     stores!: Store[];
 
-    @HasMany(() => Order)
-    orders!: Order[];
 }
 
-export default Seller;
+export default Account;
