@@ -23,7 +23,7 @@ class Account extends Model<Account> {
 
     @Column({
         type: DataType.STRING,
-        allowNull: false,
+        allowNull: true,
         field: 'token',
     })
     token!: string;
