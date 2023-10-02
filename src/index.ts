@@ -5,7 +5,7 @@ const helmet = require("helmet");
 
 class App {
   public app: Application;
-  private database: Database; // Add this line
+  private database: Database;
   private sellerRepository: SellerRepository;
 
   constructor() {
