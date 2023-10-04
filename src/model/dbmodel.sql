@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS account (
     id SERIAL PRIMARY KEY,
     mobile_number VARCHAR(15) NOT NULL,
     otp VARCHAR(6),
-    token TEXT UNIQUE
+    created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE INDEX idx_account_id ON account (id);
