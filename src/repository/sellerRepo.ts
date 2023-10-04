@@ -1,30 +1,39 @@
-import Account from "../model/account.model";
-import {Sequelize} from 'sequelize-typescript'
-
+import Database from "../config/database";
 
 interface ISellerRepository {
-    createAccount(mobileNumber: string): Promise<void>
+  createAccount(mobileNumber: string, otp: string): Promise<void>;
+  checkExistingUser(mobile_number: string): Promise<any | null>;
 }
 
-class SellerRepository implements ISellerRepository{
+class SellerRepository implements ISellerRepository {
+  async createAccount(mobileNumber: string, otp: string): Promise<void> {
+    try {
+      const queryText = "INSERT INTO account (mobile_number, otp) VALUES ($1, $2) RETURNING id";
+      const queryValues = [mobileNumber, otp];
 
-    private sequelize: Sequelize
+      const result = await Database.query(queryText, queryValues);
+      console.log(result.rows[0].id)
 
-    constructor(sequelize: Sequelize) {
-        this.sequelize = sequelize;
-      }
-
-    async createAccount(mobileNumber: string): Promise<void> {
-        try {
-        console.log(mobileNumber)
-        await Account.create({ mobileNumber: mobileNumber });
-            
-        } catch (error) {
-            throw new Error("Account creation failed");
-            console.log(error)
-        }
+    } catch (error) {
+      console.error("Error creating seller account:", error);
+      throw error;
     }
+  }
 
+  async checkExistingUser(mobile_number: string): Promise<any | null> {
+    try {
+
+      const checkUserQuery = "SELECT * FROM account WHERE mobile_number = $1"
+      const val = [mobile_number]
+      const result = await Database.query(checkUserQuery, val)
+      if (result.rowCount !== 0) {
+        throw new Error("User with the same mobile number already exists.");
+      }
+    } catch (error) {
+      console.error("Error retrieving user using mobile number:", error);
+      throw error;
+    }
+  }
 }
 
-export default SellerRepository
+export default SellerRepository;
