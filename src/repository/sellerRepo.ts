@@ -3,12 +3,7 @@ import Database from "../config/database";
 interface ISellerRepository {
   createAccount(mobileNumber: string, otp: string): Promise<void>;
   getUserBY(parameterName: string, parameterValue: any): Promise<any | null>;
-  createStore(
-    name: string,
-    address: string,
-    seller_id: number,
-    store_link: string
-  ): Promise<any | null>;
+  createStore(name:string, address:string, seller_id:number, store_link: string):Promise<any | null>;
 }
 
 class SellerRepository implements ISellerRepository {
@@ -32,17 +27,14 @@ class SellerRepository implements ISellerRepository {
     }
   }
 
-  async getUserBY(
-    parameterName: string,
-    parameterValue: any
-  ): Promise<any | null> {
+  async getUserBY(parameterName: string, parameterValue: any): Promise<any | null> {
     try {
       const query = `SELECT * FROM account WHERE ${parameterName} = $1`;
       const val = [parameterValue];
 
       const result = await Database.query(query, val);
 
-      if (result.rowCount === 1) {
+    if (result.rowCount === 1) {
         return result.rows[0];
       } else {
         return null;
@@ -53,15 +45,10 @@ class SellerRepository implements ISellerRepository {
     }
   }
 
-  async createStore(
-    name: string,
-    address: string,
-    seller_id: number,
-    store_link: string
-  ): Promise<any> {
+  async createStore(name: string, address: string, seller_id: number, store_link: string): Promise<any> {
     try {
-      const queryText =
-        "INSERT INTO store (name, address, seller_id, store_link) VALUES ($1, $2, $3, $4) RETURNING id";
+
+      const queryText = "INSERT INTO store (name, address, seller_id, store_link) VALUES ($1, $2, $3, $4) RETURNING id";
       const queryValues = [name, address, seller_id, store_link];
 
       const result = await Database.query(queryText, queryValues);
@@ -72,11 +59,15 @@ class SellerRepository implements ISellerRepository {
       } else {
         throw new Error("Failed to create a new store.");
       }
+      
     } catch (error) {
       console.error("Error retrieving user using parameter:", error);
       throw error;
+      
     }
+      
   }
+
 }
 
 export default SellerRepository;
