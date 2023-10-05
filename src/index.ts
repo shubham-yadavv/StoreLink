@@ -1,6 +1,8 @@
 import express, { Application, Request, Response } from "express";
 const helmet = require("helmet");
 import SellerRoutes from "./router/seller.route";
+import morgan from "morgan";
+
 class App {
   public app: Application;
 
@@ -15,6 +17,7 @@ class App {
     this.app.use(helmet());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    // this.app.use(morgan("dev"));
   }
 
   protected routes(): void {
