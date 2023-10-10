@@ -6,11 +6,7 @@ import productController from "../controller/product.controller";
 
 class BuyerRoutes extends BaseRoutes{
     public routes(): void {
-      
-        // get store details
         this.router.get("/store/details", authenticateJWT, storeController.getStoreDetails)
-
-        // Get Product Catalog and Categories
         this.router.get("/products/catalog", authenticateJWT, productController.getProductCatalog)
         
         

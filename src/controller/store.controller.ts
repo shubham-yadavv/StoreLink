@@ -73,17 +73,3 @@ class StoreController {
 }
 
 export default new StoreController();
-// SELECT
-// c.id AS categoryId,
-// c.name AS categoryName,
-// p.id AS productId,
-// p.name AS productName,
-// p.description,
-// p.mrp,
-// p.sale_price AS salePrice,
-// p.image_url AS imageUrl
-// FROM category c
-// LEFT JOIN product p ON c.id = p.category_id
-// JOIN store s ON p.store_id = s.id
-// WHERE s.store_link = $1
-// ORDER BY c.name, p.name;
