@@ -15,7 +15,7 @@ class AccountController{
           );
     
           if (existingUser.rowCount > 0) {
-            throw new Error("Seller with the same mobile number already exists.");
+            throw new Error("mobile number already exists.");
           }
     
           // Create a new account
@@ -27,7 +27,7 @@ class AccountController{
           if (newUser.rowCount === 1) {
             const userID = newUser.rows[0].id;
             const token = jwt.sign({ id: userID, mobile_number }, "secret", {
-              expiresIn: "1h",
+              expiresIn: "30d",
             });
     
             res

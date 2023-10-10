@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from "express";
 const helmet = require("helmet");
 import SellerRoutes from "./router/seller.route";
+import buyerRoutes from "./router/buyer.route";
 import morgan from "morgan";
 
 class App {
@@ -26,6 +27,7 @@ class App {
     });
 
     this.app.use("/api/seller", SellerRoutes)
+    this.app.use("/api/buyer", buyerRoutes)
   }
 }
 
