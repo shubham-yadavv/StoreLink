@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS account (
     id SERIAL PRIMARY KEY,
-    mobile_number VARCHAR(15) NOT NULL,
+    mobile_number VARCHAR(15) NOT NULL UNIQUE,
     otp VARCHAR(6),
     created_at TIMESTAMP DEFAULT NOW()
 );
@@ -19,7 +19,7 @@ CREATE INDEX idx_store_seller_id ON store (seller_id);
 
 CREATE TABLE IF NOT EXISTS category (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255)
+    name VARCHAR(255) UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS product (
@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS product (
     mrp NUMERIC(10, 2),
     sale_price NUMERIC(10, 2),
     image_url VARCHAR(255),
-    category_id INT REFERENCES category(id)
+    category_id INT REFERENCES category(id),
+    store_id INT REFERENCES store(id)
 );
 
 CREATE TABLE IF NOT EXISTS customer (

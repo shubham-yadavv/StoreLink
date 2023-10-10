@@ -20,7 +20,6 @@ export const authenticateJWT = (
         .status(401)
         .json({ error: "Authentication failed: Invalid token" });
     }
-    console.log(user);
     req.user = user;
     next();
   });
