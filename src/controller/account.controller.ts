@@ -8,7 +8,6 @@ class AccountController{
         const { mobile_number, otp } = req.body;
     
         try {
-          // Check existing user
           const existingUser = await Database.query(
             "SELECT * FROM account WHERE mobile_number = $1",
             [mobile_number]
@@ -18,7 +17,6 @@ class AccountController{
             throw new Error("mobile number already exists.");
           }
     
-          // Create a new account
           const newUser = await Database.query(
             "INSERT INTO account (mobile_number, otp) VALUES ($1, $2) RETURNING id",
             [mobile_number, otp]

@@ -72,7 +72,7 @@ class ProductController {
       const storeInfo = storeQuery.rows[0];
 
       const categoryQuery = await Database.query(
-        `SELECT c.name AS categoryName, p.id AS productId, p.name AS productName,
+        `SELECT c.name AS categoryname, p.id AS productid, p.name AS productname,
                 p.description, p.sale_price AS price
          FROM category c
          LEFT JOIN product p ON c.id = p.category_id
@@ -82,6 +82,9 @@ class ProductController {
         [store_link]
       );
 
+
+      // TODO : add the count od product in each category
+      
       const productCatalog = [];
 
       let currentCategory = null;

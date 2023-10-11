@@ -6,7 +6,7 @@ export const authenticateJWT = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.headers.authorization.split(" ")[1];
+  const token = req.headers.authorization ? req.headers.authorization.split(" ")[1] : null;
 
   if (!token) {
     return res
@@ -20,7 +20,15 @@ export const authenticateJWT = (
         .status(401)
         .json({ error: "Authentication failed: Invalid token" });
     }
-    req.user = user;
-    next();
+
+    if (user && user.id) {
+      req.user = user;
+      console.log(req.user.id);
+      next();
+    } else {
+      return res
+        .status(401)
+        .json({ error: "Authentication failed: Invalid user data" });
+    }
   });
 };

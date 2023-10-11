@@ -2,7 +2,10 @@ import express, { Application, Request, Response } from "express";
 const helmet = require("helmet");
 import SellerRoutes from "./router/seller.route";
 import buyerRoutes from "./router/buyer.route";
-import morgan from "morgan";
+import bodyParser from 'body-parser'
+import session from "express-session";
+
+
 
 class App {
   public app: Application;
@@ -18,12 +21,20 @@ class App {
     this.app.use(helmet());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-    // this.app.use(morgan("dev"));
+    this.app.use(bodyParser.json());
+    this.app.use(
+      session({
+        name: 'SESSION',
+        secret: 'SECRET',
+        resave: false,
+        saveUninitialized: true,
+      })
+    );
   }
 
   protected routes(): void {
     this.app.get("/", (req: Request, res: Response) => {
-      res.send("Hello world!");
+      res.send("dukaan API!");
     });
 
     this.app.use("/api/seller", SellerRoutes)
