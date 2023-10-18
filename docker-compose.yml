@@ -18,3 +18,27 @@ services:
       - "3000:3000"
 
     command: npm run dev
+
+    volumes:
+      - .:/app/
+      - /app/node_modules
+
+
+  db:
+    container_name: postgresdb
+    image: postgres
+    restart: always
+    privileged: true
+    environment:
+      - POSTGRES_USER=shubham
+      - POSTGRES_PASSWORD=jarvis
+      - POSTGRES_DB=dukaan
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+    ports:
+      - 5432:5432
+
+
+volumes:
+  postgres_data:

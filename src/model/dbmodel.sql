@@ -56,5 +56,3 @@ CREATE TABLE IF NOT EXISTS order_item (
 );
 
 
-CREATE INDEX idx_cart_line_item_cart_id ON cart_line_item (cart_id);
-CREATE INDEX idx_cart_line_item_product_id ON cart_line_item (product_id);

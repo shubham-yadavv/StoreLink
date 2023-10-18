@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Database from "../config/database";
 import jwt from "jsonwebtoken";
 
+const secret = 'secret'
 
 class AccountController{
     createAccount = async (req: Request, res: Response) => {
@@ -24,8 +25,8 @@ class AccountController{
     
           if (newUser.rowCount === 1) {
             const userID = newUser.rows[0].id;
-            const token = jwt.sign({ id: userID, mobile_number }, "secret", {
-              expiresIn: "30d",
+            const token = jwt.sign({ id: userID, mobile_number }, secret.toString(), {
+              expiresIn: "1h",
             });
     
             res

@@ -34,7 +34,7 @@ class App {
 
   protected routes(): void {
     this.app.get("/", (req: Request, res: Response) => {
-      res.send("dukaan API!");
+      res.send("dukaan API !");
     });
 
     this.app.use("/api/seller", SellerRoutes)
