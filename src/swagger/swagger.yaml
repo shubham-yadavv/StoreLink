@@ -1,0 +1,121 @@
+openapi: "3.0.0"
+info:
+  title: "REST API Docs"
+  version: "1.0.0"  
+components:
+  securitySchemes:
+    bearerAuth:
+      type: "http"
+      scheme: "bearer"
+      bearerFormat: "JWT"
+paths:
+  /api/seller/signup:
+    post:
+      summary: Create a new seller account.
+      description: Use this route to create a new seller account.
+      tags:
+        - Seller
+      requestBody:
+        description: Seller account information
+        required: true
+        content:
+          application/json:
+            example:
+              mobile_number: "512512"
+              otp: "313"
+      responses:
+        201:
+          description: Seller account created successfully.
+        400:
+          description: Bad request
+
+  /api/seller/test:
+    get:
+      summary: Test seller authentication.
+      description: Use this route to test seller authentication.
+      tags:
+        - Seller
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: Seller authentication successful.
+        401:
+          description: Unauthorized
+
+  /api/seller/store/create:
+    post:
+      summary: Create a new store.
+      description: Use this route to create a new store for a seller.
+      tags:
+        - Seller
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Store information
+        required: true
+        content:
+          application/json:
+            examples:
+              createStoreExample:
+                value:
+                  name: "yadav"
+                  address: "mumbai"
+      responses:
+        201:
+          description: Store created successfully.
+        400:
+          description: Bad request
+
+  /api/seller/inventory:
+    post:
+      summary: Create a new inventory.
+      description: Use this route to create a new inventory for a seller's store.
+      tags:
+        - Seller
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Inventory information
+        required: true
+        content:
+          application/json:
+            examples:
+              addInventoryExample:
+                value:
+                  name: "product 3"
+                  description: "desc"
+                  mrp: "25"
+                  sale_price: "30"
+                  image: "coca_cola.png"
+                  category: "category 2"
+                  storeid: 1
+      responses:
+        201:
+          description: Inventory created successfully.
+        400:
+          description: Bad request
+
+  /api/seller/orders/accept:
+    post:
+      summary: Accept an order.
+      description: Use this route to accept an order for a seller's store.
+      tags:
+        - Seller
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Order information
+        required: true
+        content:
+          application/json:
+            examples:
+              acceptOrderExample:
+                value:
+                  orderID: 9
+                  status: "accepted"
+      responses: 
+        200:
+          description: Order accepted successfully.
+        400:
+          description: Bad request

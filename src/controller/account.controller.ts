@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import Database from "../config/database";
 import jwt from "jsonwebtoken";
+import { REPLCommand } from "repl";
 
 const secret = 'secret'
 
 class AccountController{
+
     createAccount = async (req: Request, res: Response) => {
         const { mobile_number, otp } = req.body;
     
@@ -66,6 +68,13 @@ class AccountController{
         }
       };
     
+
+      test =async (req:Request, res: Response) => {
+        res.json({
+          hello: "hii"
+        })
+        
+      }
 }
 
 export default new AccountController();

@@ -1,20 +1,19 @@
 import express, { Application, Request, Response } from "express";
-const helmet = require("helmet");
+import helmet from "helmet"; // Use ES6 import syntax
 import SellerRoutes from "./router/seller.route";
 import buyerRoutes from "./router/buyer.route";
-import bodyParser from 'body-parser'
+import bodyParser from "body-parser";
 import session from "express-session";
-
-
+import swaggerDocs from "./swagger/swagger";
 
 class App {
   public app: Application;
 
   constructor() {
     this.app = express();
-    this.plugins()
-    this.routes()
-
+    this.plugins();
+    this.routes();
+    this.swagger(); // Add Swagger documentation
   }
 
   protected plugins(): void {
@@ -37,8 +36,13 @@ class App {
       res.send("dukaan API !");
     });
 
-    this.app.use("/api/seller", SellerRoutes)
-    this.app.use("/api/buyer", buyerRoutes)
+    this.app.use("/api/seller", SellerRoutes);
+    this.app.use("/api/buyer", buyerRoutes);
+  }
+
+
+  protected swagger(): void {
+    swaggerDocs(this.app, 3000); 
   }
 }
 
