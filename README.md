@@ -114,15 +114,15 @@ API Docs available at : ```http://localhost:3000/docs```
 
 &nbsp;
 
-|            Routes             | Method |          Description             |
-| :---------------------------: | :----: | :---------------------------:    |
-|  /api/seller/signup           |  POST  |   Seller Sign-up                 |
-| /api/seller/store/create      |  POST  |   Create Store                   |
-| /api/seller/products/upload   |  POST  | Upload Products and Categories   |
-| /api/seller/orders/accept     |  POST  |   Accept Orders                  |
-| /api/buyer/store/details      |  POST  |   Get Store Details              |
-| /api/buyer/products/catalog   |  POST  | Get Product Catalog and Categories |
-| /api/buyer/cart/add           |  GET   |   Add Items to Cart               |
-| /api/buyer/order/place        |  POST  |   Place an Order                  |
+|           Routes            | Method |            Description             |
+| :-------------------------: | :----: | :--------------------------------: |
+|     /api/seller/signup      |  POST  |           Seller Sign-up           |
+|  /api/seller/store/create   |  POST  |            Create Store            |
+| /api/seller/products/upload |  POST  |   Upload Products and Categories   |
+|  /api/seller/orders/accept  |  POST  |           Accept Orders            |
+|  /api/buyer/store/details   |  POST  |         Get Store Details          |
+| /api/buyer/products/catalog |  POST  | Get Product Catalog and Categories |
+|     /api/buyer/cart/add     |  GET   |         Add Items to Cart          |
+|   /api/buyer/order/place    |  POST  |           Place an Order           |
 
 
