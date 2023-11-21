@@ -4,7 +4,7 @@
 ## Basic commands
 
 ```bash
-git clone https://github.com//shubham-yadavv/dukaan-clone
+git clone https://github.com//shubham-yadavv/StoreLink
 ```
 
 &nbsp;
