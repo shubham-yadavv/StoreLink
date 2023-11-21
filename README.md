@@ -1,4 +1,4 @@
-# Dukaan clone
+# StoreLink
 
 
 ## Basic commands
